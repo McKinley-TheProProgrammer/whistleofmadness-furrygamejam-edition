@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://di8p1r1hujcuv"]
+
+[ext_resource type="Script" uid="uid://c76gkt0gy55hv" path="res://scripts/bullet.gd" id="1_mk1w6"]
+[ext_resource type="Script" uid="uid://bp0hw1ujcbuf7" path="res://scripts/strategies/bullet_movements/straight_movement.gd" id="2_12wyw"]
+[ext_resource type="Texture2D" uid="uid://kuwyx3aos4db" path="res://sprites/bullets/sonar_wave.png" id="3_3b1kd"]
+
+[sub_resource type="Curve" id="Curve_irhyl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1, Vector2(1, 1), 0.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_0slvg"]
+script = ExtResource("2_12wyw")
+speed = 300.0
+motion_curve = SubResource("Curve_irhyl")
+metadata/_custom_type_script = "uid://bp0hw1ujcbuf7"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_og1r4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3b1kd")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_il2rc"]
+radius = 9.0
+height = 45.0
+
+[node name="BulletSonarWave" type="Area2D" unique_id=1989818003]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_mk1w6")
+movement_strategy = SubResource("Resource_0slvg")
+is_conversion_bullet = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1446510021]
+texture_filter = 3
+scale = Vector2(0.35, 0.35)
+sprite_frames = SubResource("SpriteFrames_og1r4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=484998359]
+shape = SubResource("CapsuleShape2D_il2rc")
+debug_color = Color(0.8963209, 0.00020234167, 0.77707833, 0.41960785)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1841394670]
+rect = Rect2(-10, -22, 20, 44)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

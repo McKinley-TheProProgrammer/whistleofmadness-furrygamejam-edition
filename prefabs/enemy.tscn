@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dv5uj6xtxc22f"]
+
+[ext_resource type="Script" uid="uid://bj1qnb0ivy4nu" path="res://prefabs/enemy.gd" id="1_6n8dw"]
+[ext_resource type="PackedScene" uid="uid://dyd5u83oucrqb" path="res://prefabs/bullet/Bullet.tscn" id="2_aivmq"]
+[ext_resource type="Script" uid="uid://b3q83uoqrtee8" path="res://scripts/state/state_machine.gd" id="2_cypye"]
+[ext_resource type="Script" uid="uid://5mdqongfl6qr" path="res://scripts/strategies/shotting/spread_shot_strategy.gd" id="3_qnk7q"]
+[ext_resource type="Script" uid="uid://cxc46114wgolq" path="res://scripts/state/enemy_shooting_state.gd" id="5_qnk7q"]
+[ext_resource type="Script" uid="uid://qk7a4iikg02t" path="res://scripts/state/enemy_converted_state.gd" id="6_2nw32"]
+[ext_resource type="Script" uid="uid://c3e5blkvgqln4" path="res://scripts/state/enemy_patrolling_state.gd" id="7_u6on0"]
+
+[sub_resource type="Resource" id="Resource_aivmq"]
+script = ExtResource("3_qnk7q")
+bullet_count = 5
+bullet_prefab = ExtResource("2_aivmq")
+metadata/_custom_type_script = "uid://5mdqongfl6qr"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kds5g"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1303128826 groups=["enemy"]]
+script = ExtResource("1_6n8dw")
+firing_strategy = SubResource("Resource_aivmq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2078460623]
+
+[node name="StateMachine" type="Node" parent="." unique_id=649729595]
+script = ExtResource("2_cypye")
+
+[node name="EnemyShootingState" type="Node" parent="StateMachine" unique_id=1279568803]
+script = ExtResource("5_qnk7q")
+metadata/_custom_type_script = "uid://dm8r7e0ei86ih"
+
+[node name="EnemyConvertedState" type="Node" parent="StateMachine" unique_id=1374713284]
+script = ExtResource("6_2nw32")
+metadata/_custom_type_script = "uid://dm8r7e0ei86ih"
+
+[node name="EnemyPattrollingState" type="Node" parent="StateMachine" unique_id=304975830]
+script = ExtResource("7_u6on0")
+metadata/_custom_type_script = "uid://dm8r7e0ei86ih"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2079520892]
+shape = SubResource("CapsuleShape2D_kds5g")

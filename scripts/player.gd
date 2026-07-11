@@ -2,7 +2,24 @@ class_name Player extends CharacterBody2D
 
 @export var move_speed = 300.0
 @export var turret_holder : Node
-@export var bullet : PackedScene
+
+@export var firing_strategy : ShootingStrategy
+
+@onready var fire_position: Marker2D = $FirePosition
+
+var fire_timer := 0.0
+
+func _enter_tree() -> void:
+	Global.player = self
+
+
+func _process(delta: float) -> void:
+	fire_timer -= delta
+	var target = get_tree().get_first_node_in_group("enemy")
+	
+	if Input.is_action_pressed("shoot") && fire_timer <= 0.0:
+		firing_strategy.fire(fire_position, target)
+		fire_timer = firing_strategy.fire_rate
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

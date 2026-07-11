@@ -1,0 +1,20 @@
+[gd_resource type="AnimationLibrary" format=3 uid="uid://dicrbq1oy27r2"]
+
+[sub_resource type="Animation" id="Animation_8s2it"]
+
+[sub_resource type="Animation" id="Animation_rkoqo"]
+
+[sub_resource type="Animation" id="Animation_ql0kf"]
+
+[sub_resource type="Animation" id="Animation_44pvh"]
+
+[sub_resource type="Animation" id="Animation_5057a"]
+
+[resource]
+_data = {
+&"idle": SubResource("Animation_8s2it"),
+&"swim_back": SubResource("Animation_rkoqo"),
+&"swim_down": SubResource("Animation_ql0kf"),
+&"swim_front": SubResource("Animation_44pvh"),
+&"swim_up": SubResource("Animation_5057a")
+}
