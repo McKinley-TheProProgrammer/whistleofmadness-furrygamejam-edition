@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://p351wxao0d6m"]
+
+[ext_resource type="PackedScene" uid="uid://draihu2m5m4yf" path="res://prefabs/player_mermaid.tscn" id="1_w1q8k"]
+[ext_resource type="PackedScene" uid="uid://dyd5u83oucrqb" path="res://prefabs/bullet/Bullet.tscn" id="2_uxx0d"]
+[ext_resource type="Script" uid="uid://lh6nnb7mtr8q" path="res://scripts/strategies/bullet_movements/sine_movement.gd" id="3_bt7hj"]
+
+[sub_resource type="Resource" id="Resource_q0g51"]
+script = ExtResource("3_bt7hj")
+metadata/_custom_type_script = "uid://lh6nnb7mtr8q"
+
+[node name="LevelScene" type="Node2D" unique_id=1591133082]
+
+[node name="Player" parent="." unique_id=1151301046 instance=ExtResource("1_w1q8k")]
+position = Vector2(54, 32)
+
+[node name="Bullet" parent="." unique_id=501445564 instance=ExtResource("2_uxx0d")]
+position = Vector2(102, 119)
+
+[node name="Bullet2" parent="." unique_id=1986172672 instance=ExtResource("2_uxx0d")]
+position = Vector2(102, 320)
+
+[node name="Bullet3" parent="." unique_id=1723036517 instance=ExtResource("2_uxx0d")]
+position = Vector2(102, 413)
+movement_strategy = SubResource("Resource_q0g51")

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://draihu2m5m4yf"]
+
+[ext_resource type="Texture2D" uid="uid://dm8h3kc1s8bfc" path="res://sprites/player_placeholder.png" id="1_6ejqr"]
+[ext_resource type="Script" uid="uid://ek7da52xc3j2" path="res://scripts/player.gd" id="1_ns00x"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_kds5g"]
+frame_0/texture = ExtResource("1_6ejqr")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kds5g"]
+
+[node name="Player" type="CharacterBody2D" unique_id=1151301046 node_paths=PackedStringArray("turret_holder")]
+motion_mode = 1
+script = ExtResource("1_ns00x")
+turret_holder = NodePath("TurretHolder")
+
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=528081915]
+scale = Vector2(0.02, 0.02)
+texture = SubResource("AnimatedTexture_kds5g")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1411020297]
+shape = SubResource("CapsuleShape2D_kds5g")
+
+[node name="TurretHolder" type="Node" parent="." unique_id=1572372040]
