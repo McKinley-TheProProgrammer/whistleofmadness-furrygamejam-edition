@@ -31,9 +31,10 @@ height = 45.0
 
 [node name="BulletSonarWave" type="Area2D" unique_id=1989818003]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 4
 script = ExtResource("1_mk1w6")
 movement_strategy = SubResource("Resource_0slvg")
+damage = 10
 is_conversion_bullet = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1446510021]
@@ -48,4 +49,5 @@ debug_color = Color(0.8963209, 0.00020234167, 0.77707833, 0.41960785)
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1841394670]
 rect = Rect2(-10, -22, 20, 44)
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

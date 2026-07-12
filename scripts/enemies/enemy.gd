@@ -2,10 +2,14 @@ class_name Enemy extends CharacterBody2D
 
 @export var health: int = 3
 @export var is_convertible: bool = true
+@export var on_converted_sprite : Texture2D
 @export var firing_strategy: ShootingStrategy
 
-var is_converted: bool = false
 @onready var state_machine: StateMachine = $StateMachine
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
+
+var is_converted: bool = false
 
 func _ready() -> void:
 	add_to_group("enemy")
@@ -17,7 +21,9 @@ func get_target() -> Node2D:
 	return get_tree().get_first_node_in_group("player")
 
 func take_damage(amount: int, is_conversion: bool) -> void:
-	if is_converted: return # Invincible or handles damage differently as ally
+	
+	if is_converted: 
+		return # Invincible or handles damage differently as ally
 	
 	health -= amount
 	if health <= 0:
@@ -25,11 +31,13 @@ func take_damage(amount: int, is_conversion: bool) -> void:
 			convert_to_ally()
 		else:
 			die()
+	
 
 func convert_to_ally() -> void:
 	is_converted = true
 	health = 5 # Refill health as an ally
-	state_machine.transition_to("Converted")
+	sprite_2d.texture = on_converted_sprite
+	state_machine.transition_to("EnemyConvertedState")
 
 func die() -> void:
 	queue_free()

@@ -27,6 +27,7 @@ window/stretch/aspect="expand"
 [global_group]
 
 enemy=""
+player="The layer containing the Player"
 
 [input]
 
@@ -60,6 +61,13 @@ shoot={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_render/layer_1="Player"
+2d_render/layer_2="PlayerBullets"
+2d_render/layer_3="Enemies"
+2d_render/layer_4="EnemyBullets"
 
 [physics]
 

@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://p351wxao0d6m"]
 
 [ext_resource type="PackedScene" uid="uid://draihu2m5m4yf" path="res://prefabs/player_mermaid.tscn" id="1_w1q8k"]
-[ext_resource type="PackedScene" uid="uid://dyd5u83oucrqb" path="res://prefabs/bullet/Bullet.tscn" id="2_uxx0d"]
+[ext_resource type="PackedScene" uid="uid://dyd5u83oucrqb" path="res://prefabs/bullet/enemy_bullet.tscn" id="2_uxx0d"]
 [ext_resource type="Script" uid="uid://lh6nnb7mtr8q" path="res://scripts/strategies/bullet_movements/sine_movement.gd" id="3_bt7hj"]
+[ext_resource type="PackedScene" uid="uid://dv5uj6xtxc22f" path="res://prefabs/enemy_convertible.tscn" id="4_06d1o"]
+[ext_resource type="PackedScene" uid="uid://c7ngwp4omugf7" path="res://prefabs/enemy_not_convertible.tscn" id="5_ybhun"]
 
 [sub_resource type="Curve" id="Curve_06d1o"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -15,6 +17,12 @@ amplitude = 150.0
 motion_curve = SubResource("Curve_06d1o")
 metadata/_custom_type_script = "uid://lh6nnb7mtr8q"
 
+[sub_resource type="Curve2D" id="Curve2D_bt7hj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 546, 52, 0, 0, 0, 0, 381, -137, 0, 0, 0, 0, 138, 30, 1.3310001, -59.895004, -1.3310001, 59.895004, 99, 174, 0, 0, 0, 0, 138, 332, 0, 0, 0, 0, 310, 500, 0, 0, 0, 0, 532, 340, -1.3310001, 137.093, 1.3310001, -137.093, 561, 191, 0, 0, 0, 0, 546, 52)
+}
+point_count = 9
+
 [node name="LevelScene" type="Node2D" unique_id=1591133082]
 
 [node name="Player" parent="." unique_id=1151301046 instance=ExtResource("1_w1q8k")]
@@ -23,3 +31,16 @@ position = Vector2(54, 32)
 [node name="Bullet" parent="." unique_id=1989818003 instance=ExtResource("2_uxx0d")]
 position = Vector2(182, 110)
 movement_strategy = SubResource("Resource_bt7hj")
+
+[node name="Path2D" type="Path2D" parent="." unique_id=940190472]
+position = Vector2(578, 149)
+curve = SubResource("Curve2D_bt7hj")
+
+[node name="EnemyConvertible" parent="." unique_id=1303128826 instance=ExtResource("4_06d1o")]
+position = Vector2(531, 307)
+
+[node name="EnemyConvertible2" parent="." unique_id=2104603231 instance=ExtResource("4_06d1o")]
+position = Vector2(754, 80)
+
+[node name="EnemyNotConvertible" parent="." unique_id=955768775 instance=ExtResource("5_ybhun")]
+position = Vector2(1001, 440)

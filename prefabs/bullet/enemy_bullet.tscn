@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://dyd5u83oucrqb"]
 
-[ext_resource type="Script" uid="uid://c76gkt0gy55hv" path="res://scripts/bullet.gd" id="1_0slvg"]
-[ext_resource type="Script" uid="uid://bp0hw1ujcbuf7" path="res://scripts/strategies/bullet_movements/straight_movement.gd" id="2_irhyl"]
-[ext_resource type="Texture2D" uid="uid://cw8heavxdboak" path="res://sprites/bullets/bullet1.png" id="3_q0g51"]
-[ext_resource type="Texture2D" uid="uid://svxpuy1504ad" path="res://sprites/bullets/bullet2.png" id="4_kldui"]
-[ext_resource type="Texture2D" uid="uid://c2vxjhaa6i2va" path="res://sprites/bullets/bullet3.png" id="5_qvi6w"]
-[ext_resource type="Texture2D" uid="uid://c172x8xkogrnp" path="res://sprites/bullets/bullet4.png" id="6_nl1hc"]
+[ext_resource type="Script" uid="uid://c76gkt0gy55hv" path="res://scripts/bullet.gd" id="1_n8ldd"]
+[ext_resource type="Script" uid="uid://bp0hw1ujcbuf7" path="res://scripts/strategies/bullet_movements/straight_movement.gd" id="2_hh8om"]
+[ext_resource type="Texture2D" uid="uid://cw8heavxdboak" path="res://sprites/bullets/bullet1.png" id="3_gunnv"]
+[ext_resource type="Texture2D" uid="uid://svxpuy1504ad" path="res://sprites/bullets/bullet2.png" id="4_ho8cv"]
+[ext_resource type="Texture2D" uid="uid://c2vxjhaa6i2va" path="res://sprites/bullets/bullet3.png" id="5_6761b"]
+[ext_resource type="Texture2D" uid="uid://c172x8xkogrnp" path="res://sprites/bullets/bullet4.png" id="6_fgkd2"]
 
 [sub_resource type="Curve" id="Curve_irhyl"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 1, Vector2(1, 1), 0.0, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Resource" id="Resource_0slvg"]
-script = ExtResource("2_irhyl")
+script = ExtResource("2_hh8om")
 motion_curve = SubResource("Curve_irhyl")
 metadata/_custom_type_script = "uid://bp0hw1ujcbuf7"
 
@@ -20,22 +20,22 @@ metadata/_custom_type_script = "uid://bp0hw1ujcbuf7"
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_q0g51")
+"texture": ExtResource("3_gunnv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_kldui")
+"texture": ExtResource("4_ho8cv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_qvi6w")
+"texture": ExtResource("5_6761b")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_nl1hc")
+"texture": ExtResource("6_fgkd2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_qvi6w")
+"texture": ExtResource("5_6761b")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_kldui")
+"texture": ExtResource("4_ho8cv")
 }],
 "loop": 1,
 "name": &"idle",
@@ -43,11 +43,11 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kds5g"]
+radius = 12.0
 
-[node name="Bullet" type="Area2D" unique_id=1989818003]
-collision_layer = 2
-collision_mask = 5
-script = ExtResource("1_0slvg")
+[node name="EnemyBullet" type="Area2D" unique_id=1989818003]
+collision_layer = 8
+script = ExtResource("1_n8ldd")
 movement_strategy = SubResource("Resource_0slvg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1446510021]

@@ -39,6 +39,8 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+func take_damage(amount : int, is_conversion: bool = false) -> void:
+	print("TOOK DAMAGE PLAYER")
 
 func convert_to_turret(enemy) -> void:
 	# CONVERTS ENEMIES TO ALLIES FOR THE PLAYER

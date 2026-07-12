@@ -1,4 +1,4 @@
-class_name EnemyConvertedState extends State
+class_name EnemyShootingState extends State
 
 @export var fire_rate : float = 1.0
 var fire_timer : float = 0.0
