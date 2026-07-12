@@ -29,7 +29,7 @@ point_count = 9
 position = Vector2(54, 32)
 
 [node name="Bullet" parent="." unique_id=1989818003 instance=ExtResource("2_uxx0d")]
-position = Vector2(182, 110)
+position = Vector2(157, 182)
 movement_strategy = SubResource("Resource_bt7hj")
 
 [node name="Path2D" type="Path2D" parent="." unique_id=940190472]
