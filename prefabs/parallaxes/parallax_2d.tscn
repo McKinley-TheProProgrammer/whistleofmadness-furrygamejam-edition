@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c75i4pvev7dk0"]
+
+[sub_resource type="Gradient" id="Gradient_ybhun"]
+colors = PackedColorArray(0, 0, 1, 1, 0, 0.76862746, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kds5g"]
+gradient = SubResource("Gradient_ybhun")
+width = 1200
+height = 660
+fill_from = Vector2(1, 1)
+
+[node name="Parallax2D" type="Parallax2D" unique_id=218880914]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1171701489]
+z_index = -5
+position = Vector2(574.5, 327.75)
+texture = SubResource("GradientTexture2D_kds5g")

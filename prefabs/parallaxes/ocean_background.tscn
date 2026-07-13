@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://wrculvocurg4"]
+
+[ext_resource type="Texture2D" uid="uid://dannlu4rxe0k5" path="res://sprites/stages/clouds.png" id="1_b0bmw"]
+[ext_resource type="Texture2D" uid="uid://b2r76whjbck6u" path="res://sprites/stages/mountains.png" id="2_khlqq"]
+[ext_resource type="Texture2D" uid="uid://wgu23wpgx36n" path="res://sprites/stages/top_of_the_sea.png" id="3_l3spu"]
+[ext_resource type="Texture2D" uid="uid://bj6b5b83gkkrc" path="res://sprites/stages/sea_base.png" id="4_o5ptp"]
+
+[sub_resource type="Gradient" id="Gradient_sd75t"]
+colors = PackedColorArray(0, 0, 0.3254902, 1, 0.09411765, 0, 0.5764706, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kds5g"]
+gradient = SubResource("Gradient_sd75t")
+width = 1150
+height = 75
+fill_from = Vector2(1, 0.20940171)
+
+[node name="OceanBackground" type="Node2D" unique_id=770127564]
+
+[node name="Sky" type="Parallax2D" parent="." unique_id=1929426676]
+scroll_scale = Vector2(0.25, 1)
+repeat_size = Vector2(1200, 0)
+autoscroll = Vector2(100, 0)
+
+[node name="clouds" type="Sprite2D" parent="Sky" unique_id=1837321462]
+z_index = -5
+texture_filter = 5
+position = Vector2(577, 286)
+scale = Vector2(4.484375, 4.484375)
+texture = ExtResource("1_b0bmw")
+
+[node name="Mountains" type="Parallax2D" parent="." unique_id=1323362547]
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(1200, 0)
+autoscroll = Vector2(10, 0)
+
+[node name="mountain_sprite" type="Sprite2D" parent="Mountains" unique_id=1103902411]
+z_index = -5
+texture_filter = 3
+position = Vector2(576, 290)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("2_khlqq")
+
+[node name="TopOfTheSea" type="Parallax2D" parent="." unique_id=1885280718]
+scroll_scale = Vector2(0.9, 1)
+repeat_size = Vector2(1150, 0)
+autoscroll = Vector2(10, 0)
+
+[node name="top_sea_sprite" type="Sprite2D" parent="TopOfTheSea" unique_id=1268364627]
+z_index = -5
+texture_filter = 3
+position = Vector2(576, 290)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("3_l3spu")
+
+[node name="SeaBase" type="Parallax2D" parent="." unique_id=459633503]
+repeat_size = Vector2(1150, 0)
+autoscroll = Vector2(10, 0)
+
+[node name="sea_base_sprite" type="Sprite2D" parent="SeaBase" unique_id=775659417]
+z_index = -5
+texture_filter = 3
+position = Vector2(576, 290)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("4_o5ptp")
+
+[node name="bottom_sea" type="Sprite2D" parent="SeaBase" unique_id=1823395610]
+position = Vector2(577, 614)
+scale = Vector2(1.0034783, 1)
+texture = SubResource("GradientTexture2D_kds5g")

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://lh6nnb7mtr8q" path="res://scripts/strategies/bullet_movements/sine_movement.gd" id="3_bt7hj"]
 [ext_resource type="PackedScene" uid="uid://dv5uj6xtxc22f" path="res://prefabs/enemy_convertible.tscn" id="4_06d1o"]
 [ext_resource type="PackedScene" uid="uid://c7ngwp4omugf7" path="res://prefabs/enemy_not_convertible.tscn" id="5_ybhun"]
+[ext_resource type="PackedScene" uid="uid://wrculvocurg4" path="res://prefabs/parallaxes/ocean_background.tscn" id="6_lx40h"]
 
 [sub_resource type="Curve" id="Curve_06d1o"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -22,6 +23,17 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 546, 52, 0, 0, 0, 0, 381, -137, 0, 0, 0, 0, 138, 30, 1.3310001, -59.895004, -1.3310001, 59.895004, 99, 174, 0, 0, 0, 0, 138, 332, 0, 0, 0, 0, 310, 500, 0, 0, 0, 0, 532, 340, -1.3310001, 137.093, 1.3310001, -137.093, 561, 191, 0, 0, 0, 0, 546, 52)
 }
 point_count = 9
+
+[sub_resource type="Gradient" id="Gradient_lx40h"]
+offsets = PackedFloat32Array(0, 0.9970414)
+colors = PackedColorArray(0, 0.4745098, 0.93333334, 1, 0.23529412, 0.2509804, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sd75t"]
+gradient = SubResource("Gradient_lx40h")
+width = 1200
+height = 660
+fill_from = Vector2(1, 1)
+repeat = 2
 
 [node name="LevelScene" type="Node2D" unique_id=1591133082]
 
@@ -44,3 +56,10 @@ position = Vector2(754, 80)
 
 [node name="EnemyNotConvertible" parent="." unique_id=955768775 instance=ExtResource("5_ybhun")]
 position = Vector2(1001, 440)
+
+[node name="OceanBackground" parent="." unique_id=770127564 instance=ExtResource("6_lx40h")]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=937782108]
+z_index = -7
+position = Vector2(601, 331)
+texture = SubResource("GradientTexture2D_sd75t")
