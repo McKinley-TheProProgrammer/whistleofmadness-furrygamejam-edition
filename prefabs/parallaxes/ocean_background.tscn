@@ -19,7 +19,7 @@ fill_from = Vector2(1, 0.20940171)
 [node name="Sky" type="Parallax2D" parent="." unique_id=1929426676]
 scroll_scale = Vector2(0.25, 1)
 repeat_size = Vector2(1200, 0)
-autoscroll = Vector2(100, 0)
+autoscroll = Vector2(-100, 0)
 
 [node name="clouds" type="Sprite2D" parent="Sky" unique_id=1837321462]
 z_index = -5
@@ -31,7 +31,7 @@ texture = ExtResource("1_b0bmw")
 [node name="Mountains" type="Parallax2D" parent="." unique_id=1323362547]
 scroll_scale = Vector2(0.5, 1)
 repeat_size = Vector2(1200, 0)
-autoscroll = Vector2(10, 0)
+autoscroll = Vector2(-100, 0)
 
 [node name="mountain_sprite" type="Sprite2D" parent="Mountains" unique_id=1103902411]
 z_index = -5
@@ -43,7 +43,7 @@ texture = ExtResource("2_khlqq")
 [node name="TopOfTheSea" type="Parallax2D" parent="." unique_id=1885280718]
 scroll_scale = Vector2(0.9, 1)
 repeat_size = Vector2(1150, 0)
-autoscroll = Vector2(10, 0)
+autoscroll = Vector2(-100, 0)
 
 [node name="top_sea_sprite" type="Sprite2D" parent="TopOfTheSea" unique_id=1268364627]
 z_index = -5
@@ -54,7 +54,7 @@ texture = ExtResource("3_l3spu")
 
 [node name="SeaBase" type="Parallax2D" parent="." unique_id=459633503]
 repeat_size = Vector2(1150, 0)
-autoscroll = Vector2(10, 0)
+autoscroll = Vector2(-100, 0)
 
 [node name="sea_base_sprite" type="Sprite2D" parent="SeaBase" unique_id=775659417]
 z_index = -5

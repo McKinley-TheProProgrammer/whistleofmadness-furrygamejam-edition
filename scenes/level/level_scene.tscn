@@ -2,8 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://draihu2m5m4yf" path="res://prefabs/player_mermaid.tscn" id="1_w1q8k"]
 [ext_resource type="PackedScene" uid="uid://dv5uj6xtxc22f" path="res://prefabs/enemy_convertible.tscn" id="4_06d1o"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_5rubo"]
 [ext_resource type="PackedScene" uid="uid://c7ngwp4omugf7" path="res://prefabs/enemy_not_convertible.tscn" id="5_ybhun"]
 [ext_resource type="PackedScene" uid="uid://wrculvocurg4" path="res://prefabs/parallaxes/ocean_background.tscn" id="6_lx40h"]
+[ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="6_nm8e3"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_6vngw"]
 
 [sub_resource type="Curve2D" id="Curve2D_bt7hj"]
 _data = {
@@ -33,6 +36,9 @@ b = Vector2(0, 1200)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_nm8e3"]
 b = Vector2(0, 1200)
+
+[sub_resource type="Resource" id="Resource_e8kwp"]
+script = ExtResource("7_6vngw")
 
 [node name="LevelScene" type="Node2D" unique_id=1591133082]
 
@@ -84,9 +90,32 @@ shape = SubResource("SegmentShape2D_nm8e3")
 metadata/_edit_lock_ = true
 
 [node name="MainCamera2D" type="Camera2D" parent="." unique_id=385616089]
-anchor_mode = 0
+physics_interpolation_mode = 1
+top_level = true
+position = Vector2(576, 440)
 limit_left = 0
 limit_top = 0
 limit_right = 2200
 limit_bottom = 1507
 editor_draw_limits = true
+
+[node name="PhantomCameraHost" type="Node" parent="MainCamera2D" unique_id=1590636041]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("5_5rubo")
+
+[node name="PhantomCamera2D" type="Node2D" parent="." unique_id=1324510204 node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(55, 440)
+script = ExtResource("6_nm8e3")
+follow_mode = 2
+follow_target = NodePath("../Player")
+tween_resource = SubResource("Resource_e8kwp")
+follow_offset = Vector2(1, 1)
+lookahead = true
+draw_limits = true
+limit_left = 0
+limit_top = 0
+limit_right = 2200
+limit_bottom = 1507
+metadata/_custom_type_script = "uid://bhexx6mj1xv3q"
