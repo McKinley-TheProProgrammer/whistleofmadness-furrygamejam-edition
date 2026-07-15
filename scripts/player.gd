@@ -1,5 +1,6 @@
 class_name Player extends CharacterBody2D
 
+@export var health : Health
 @export var move_speed = 300.0
 @export var turret_holder : Node
 
@@ -41,6 +42,8 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(amount : int, is_conversion: bool = false) -> void:
 	print("TOOK DAMAGE PLAYER")
+	
+	health.take_damage(amount)
 
 func convert_to_turret(enemy) -> void:
 	# CONVERTS ENEMIES TO ALLIES FOR THE PLAYER

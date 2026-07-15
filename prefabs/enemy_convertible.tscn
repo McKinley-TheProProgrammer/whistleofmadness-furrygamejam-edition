@@ -5,10 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://dgjef8n667my4" path="res://sprites/placeholders/enemy_converted_state_placeholder.png" id="2_hlhlx"]
 [ext_resource type="Script" uid="uid://5mdqongfl6qr" path="res://scripts/strategies/shotting/spread_shot_strategy.gd" id="3_hlhlx"]
 [ext_resource type="Texture2D" uid="uid://b5bp5ftghko5k" path="res://sprites/placeholders/enemy_convertible_placeholder.png" id="4_66tsb"]
+[ext_resource type="Shader" uid="uid://cwuydvfjtcveb" path="res://shaders/blink_and_saturate.gdshader" id="5_66tsb"]
 [ext_resource type="Script" uid="uid://b3q83uoqrtee8" path="res://scripts/state/state_machine.gd" id="5_kei40"]
 [ext_resource type="Script" uid="uid://cxc46114wgolq" path="res://scripts/state/enemy_shooting_state.gd" id="6_57c52"]
 [ext_resource type="Script" uid="uid://qk7a4iikg02t" path="res://scripts/state/enemy_converted_state.gd" id="7_jvvx3"]
 [ext_resource type="Script" uid="uid://c3e5blkvgqln4" path="res://scripts/state/enemy_patrolling_state.gd" id="8_2y7jb"]
+[ext_resource type="PackedScene" uid="uid://bskpvvtkc5xb8" path="res://prefabs/components/health.tscn" id="11_66tsb"]
+[ext_resource type="PackedScene" uid="uid://ddd0towyqg3v3" path="res://prefabs/components/feels.tscn" id="12_kei40"]
 
 [sub_resource type="Resource" id="Resource_aivmq"]
 script = ExtResource("3_hlhlx")
@@ -16,18 +19,28 @@ bullet_count = 5
 bullet_prefab = ExtResource("2_dk8d2")
 metadata/_custom_type_script = "uid://5mdqongfl6qr"
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_66tsb"]
+shader = ExtResource("5_66tsb")
+shader_parameter/blink_color = Color(1, 0, 0.6, 1)
+shader_parameter/saturation_amount = 2.0
+shader_parameter/blink_max_intensity = 0.0
+shader_parameter/blink_frequency = 20.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kds5g"]
 radius = 57.0
 height = 154.0
 
-[node name="EnemyConvertible" type="CharacterBody2D" unique_id=1303128826 groups=["enemy"]]
+[node name="EnemyConvertible" type="CharacterBody2D" unique_id=1303128826 node_paths=PackedStringArray("health", "feels_component") groups=["enemy"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_o7bb8")
+health = NodePath("Health")
 on_converted_sprite = ExtResource("2_hlhlx")
 firing_strategy = SubResource("Resource_aivmq")
+feels_component = NodePath("FEELS")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2078460623]
+material = SubResource("ShaderMaterial_66tsb")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_66tsb")
 
@@ -49,3 +62,11 @@ metadata/_custom_type_script = "uid://dm8r7e0ei86ih"
 [node name="EnemyConvertedState" type="Node" parent="StateMachine" unique_id=1374713284]
 script = ExtResource("7_jvvx3")
 metadata/_custom_type_script = "uid://dm8r7e0ei86ih"
+
+[node name="Health" parent="." unique_id=1207851034 instance=ExtResource("11_66tsb")]
+
+[node name="FEELS" parent="." unique_id=2147329399 node_paths=PackedStringArray("target_sprite") instance=ExtResource("12_kei40")]
+target_sprite = NodePath("../Sprite2D")
+
+[connection signal="on_damage_taken" from="Health" to="." method="_on_damage_taken"]
+[connection signal="on_death" from="Health" to="." method="_on_health_dead"]

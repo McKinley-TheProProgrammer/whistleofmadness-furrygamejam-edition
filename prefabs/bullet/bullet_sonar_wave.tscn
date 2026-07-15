@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c76gkt0gy55hv" path="res://scripts/bullet.gd" id="1_mk1w6"]
 [ext_resource type="Script" uid="uid://bp0hw1ujcbuf7" path="res://scripts/strategies/bullet_movements/straight_movement.gd" id="2_12wyw"]
 [ext_resource type="Texture2D" uid="uid://kuwyx3aos4db" path="res://sprites/bullets/sonar_wave.png" id="3_3b1kd"]
+[ext_resource type="Shader" uid="uid://cwuydvfjtcveb" path="res://shaders/blink_and_saturate.gdshader" id="3_il2rc"]
 
 [sub_resource type="Curve" id="Curve_irhyl"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 1, Vector2(1, 1), 0.0, 0.0, 1, 0]
@@ -10,9 +11,16 @@ point_count = 2
 
 [sub_resource type="Resource" id="Resource_0slvg"]
 script = ExtResource("2_12wyw")
-speed = 300.0
+speed = 1000.0
 motion_curve = SubResource("Curve_irhyl")
 metadata/_custom_type_script = "uid://bp0hw1ujcbuf7"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6032i"]
+shader = ExtResource("3_il2rc")
+shader_parameter/blink_color = Color(0.93333334, 0, 0.84313726, 1)
+shader_parameter/saturation_amount = 2.0
+shader_parameter/blink_max_intensity = 0.2999999932944
+shader_parameter/blink_frequency = 0.5000000074506
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_og1r4"]
 animations = [{
@@ -39,14 +47,17 @@ is_conversion_bullet = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1446510021]
 texture_filter = 3
+material = SubResource("ShaderMaterial_6032i")
 scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_og1r4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=484998359]
+visible = false
 shape = SubResource("CapsuleShape2D_il2rc")
 debug_color = Color(0.8963209, 0.00020234167, 0.77707833, 0.41960785)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1841394670]
+visible = false
 rect = Rect2(-10, -22, 20, 44)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

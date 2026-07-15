@@ -11,7 +11,7 @@ colors = PackedColorArray(0, 0, 0.3254902, 1, 0.09411765, 0, 0.5764706, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kds5g"]
 gradient = SubResource("Gradient_sd75t")
 width = 1150
-height = 75
+height = 950
 fill_from = Vector2(1, 0.20940171)
 
 [node name="OceanBackground" type="Node2D" unique_id=770127564]
@@ -64,6 +64,7 @@ scale = Vector2(4.5, 4.5)
 texture = ExtResource("4_o5ptp")
 
 [node name="bottom_sea" type="Sprite2D" parent="SeaBase" unique_id=1823395610]
-position = Vector2(577, 614)
+z_index = -5
+position = Vector2(577, 1032)
 scale = Vector2(1.0034783, 1)
 texture = SubResource("GradientTexture2D_kds5g")

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ddd0towyqg3v3"]
+
+[ext_resource type="Script" uid="uid://b8ngs742la5by" path="res://scripts/components/feels.gd" id="1_qtltc"]
+
+[node name="FEELS" type="Node" unique_id=2147329399 node_paths=PackedStringArray("target_sprite")]
+script = ExtResource("1_qtltc")
+target_sprite = NodePath("")

@@ -5,6 +5,7 @@ class_name Health
 
 signal on_damage_taken(amount : int, hpAfter : int)
 signal on_hp_recovered(amount : int, hpAfter : int)
+signal on_death
 
 var currentHP : int
 var isDead : bool
@@ -17,6 +18,7 @@ func take_damage(amount : int) -> void:
 	on_damage_taken.emit(amount, currentHP)
 	if currentHP <= 0:
 		isDead = true
+		on_death.emit()
 	 
 
 func recover(amount : int) -> void:

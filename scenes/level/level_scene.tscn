@@ -1,22 +1,9 @@
 [gd_scene format=3 uid="uid://p351wxao0d6m"]
 
 [ext_resource type="PackedScene" uid="uid://draihu2m5m4yf" path="res://prefabs/player_mermaid.tscn" id="1_w1q8k"]
-[ext_resource type="PackedScene" uid="uid://dyd5u83oucrqb" path="res://prefabs/bullet/enemy_bullet.tscn" id="2_uxx0d"]
-[ext_resource type="Script" uid="uid://lh6nnb7mtr8q" path="res://scripts/strategies/bullet_movements/sine_movement.gd" id="3_bt7hj"]
 [ext_resource type="PackedScene" uid="uid://dv5uj6xtxc22f" path="res://prefabs/enemy_convertible.tscn" id="4_06d1o"]
 [ext_resource type="PackedScene" uid="uid://c7ngwp4omugf7" path="res://prefabs/enemy_not_convertible.tscn" id="5_ybhun"]
 [ext_resource type="PackedScene" uid="uid://wrculvocurg4" path="res://prefabs/parallaxes/ocean_background.tscn" id="6_lx40h"]
-
-[sub_resource type="Curve" id="Curve_06d1o"]
-_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
-point_count = 2
-
-[sub_resource type="Resource" id="Resource_bt7hj"]
-script = ExtResource("3_bt7hj")
-frequency = 50.0
-amplitude = 150.0
-motion_curve = SubResource("Curve_06d1o")
-metadata/_custom_type_script = "uid://lh6nnb7mtr8q"
 
 [sub_resource type="Curve2D" id="Curve2D_bt7hj"]
 _data = {
@@ -30,19 +17,27 @@ colors = PackedColorArray(0, 0.4745098, 0.93333334, 1, 0.23529412, 0.2509804, 1,
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_sd75t"]
 gradient = SubResource("Gradient_lx40h")
-width = 1200
+width = 2400
 height = 660
 fill_from = Vector2(1, 1)
 repeat = 2
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lx40h"]
+b = Vector2(2304, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_37fyn"]
+b = Vector2(2000, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_5rubo"]
+b = Vector2(0, 1200)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_nm8e3"]
+b = Vector2(0, 1200)
+
 [node name="LevelScene" type="Node2D" unique_id=1591133082]
 
 [node name="Player" parent="." unique_id=1151301046 instance=ExtResource("1_w1q8k")]
-position = Vector2(54, 32)
-
-[node name="Bullet" parent="." unique_id=1989818003 instance=ExtResource("2_uxx0d")]
-position = Vector2(157, 182)
-movement_strategy = SubResource("Resource_bt7hj")
+position = Vector2(54, 439)
 
 [node name="Path2D" type="Path2D" parent="." unique_id=940190472]
 position = Vector2(578, 149)
@@ -61,5 +56,37 @@ position = Vector2(1001, 440)
 
 [node name="Background" type="Sprite2D" parent="." unique_id=937782108]
 z_index = -7
-position = Vector2(601, 331)
+position = Vector2(1153, 331)
 texture = SubResource("GradientTexture2D_sd75t")
+
+[node name="Walls" type="StaticBody2D" parent="." unique_id=1741552750]
+position = Vector2(-2, 297)
+collision_layer = 7
+metadata/_edit_lock_ = true
+
+[node name="TopSeaCollision" type="CollisionShape2D" parent="Walls" unique_id=1628758184]
+shape = SubResource("SegmentShape2D_lx40h")
+metadata/_edit_lock_ = true
+
+[node name="BottomCollision" type="CollisionShape2D" parent="Walls" unique_id=1950297206]
+position = Vector2(0, 1205)
+shape = SubResource("SegmentShape2D_37fyn")
+metadata/_edit_lock_ = true
+
+[node name="LeftCollision" type="CollisionShape2D" parent="Walls" unique_id=1258635288]
+position = Vector2(3, 3)
+shape = SubResource("SegmentShape2D_5rubo")
+metadata/_edit_lock_ = true
+
+[node name="RightCollision" type="CollisionShape2D" parent="Walls" unique_id=1771949110]
+position = Vector2(2203, 3)
+shape = SubResource("SegmentShape2D_nm8e3")
+metadata/_edit_lock_ = true
+
+[node name="MainCamera2D" type="Camera2D" parent="." unique_id=385616089]
+anchor_mode = 0
+limit_left = 0
+limit_top = 0
+limit_right = 2200
+limit_bottom = 1507
+editor_draw_limits = true

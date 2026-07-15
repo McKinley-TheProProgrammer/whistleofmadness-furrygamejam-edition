@@ -5,18 +5,20 @@
 [ext_resource type="PackedScene" uid="uid://di8p1r1hujcuv" path="res://prefabs/bullet/bullet_sonar_wave.tscn" id="2_vtw5p"]
 [ext_resource type="Script" uid="uid://dncrpx1r7156g" path="res://scripts/strategies/shotting/standard_shooting_strategy.gd" id="3_kqwd6"]
 [ext_resource type="AnimationLibrary" uid="uid://dicrbq1oy27r2" path="res://animations/player_animation_library.tres" id="5_kqwd6"]
+[ext_resource type="PackedScene" uid="uid://bskpvvtkc5xb8" path="res://prefabs/components/health.tscn" id="6_tovvf"]
 
 [sub_resource type="Resource" id="Resource_06d1o"]
 script = ExtResource("3_kqwd6")
 bullet_prefab = ExtResource("2_vtw5p")
+fire_rate = 1.5
 metadata/_custom_type_script = "uid://dncrpx1r7156g"
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_kds5g"]
 frame_0/texture = ExtResource("1_6ejqr")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kds5g"]
-radius = 44.0
-height = 124.0
+radius = 19.0
+height = 54.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kqwd6"]
 animation = &"player_animation_library/idle"
@@ -76,10 +78,11 @@ states/Idle/position = Vector2(399, 117)
 states/Swimming/node = SubResource("AnimationNodeBlendSpace2D_kqwd6")
 states/Swimming/position = Vector2(645, 107)
 
-[node name="Player" type="CharacterBody2D" unique_id=1151301046 node_paths=PackedStringArray("turret_holder") groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1151301046 node_paths=PackedStringArray("health", "turret_holder") groups=["player"]]
 collision_mask = 12
 motion_mode = 1
 script = ExtResource("1_ns00x")
+health = NodePath("Health")
 turret_holder = NodePath("TurretHolder")
 firing_strategy = SubResource("Resource_06d1o")
 
@@ -105,3 +108,6 @@ parameters/Swimming/blend_position = Vector2(0, 0)
 libraries/player_animation_library = ExtResource("5_kqwd6")
 
 [node name="TurretHolder" type="Node" parent="." unique_id=1572372040]
+
+[node name="Health" parent="." unique_id=1207851034 instance=ExtResource("6_tovvf")]
+maxHP = 8

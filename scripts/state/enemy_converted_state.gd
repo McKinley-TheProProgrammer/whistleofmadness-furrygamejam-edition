@@ -6,7 +6,7 @@ var fire_rate := 0.0
 func enter() -> void:
 	enemy.set_collision_layer_value(3,false)
 	enemy.set_collision_layer_value(1,true)
-	enemy.modulate = Color(0.5,1.0,.05)
+	
 
 func physics_update(delta: float) -> void:
 	var target = _find_closest_hostile_enemy()
