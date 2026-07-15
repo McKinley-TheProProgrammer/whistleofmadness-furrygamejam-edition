@@ -20,6 +20,7 @@ bullet_prefab = ExtResource("2_dk8d2")
 metadata/_custom_type_script = "uid://5mdqongfl6qr"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_66tsb"]
+resource_local_to_scene = true
 shader = ExtResource("5_66tsb")
 shader_parameter/blink_color = Color(1, 0, 0.6, 1)
 shader_parameter/saturation_amount = 2.0

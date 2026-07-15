@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://p351wxao0d6m"]
 
 [ext_resource type="PackedScene" uid="uid://draihu2m5m4yf" path="res://prefabs/player_mermaid.tscn" id="1_w1q8k"]
-[ext_resource type="PackedScene" uid="uid://dv5uj6xtxc22f" path="res://prefabs/enemy_convertible.tscn" id="4_06d1o"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="5_5rubo"]
-[ext_resource type="PackedScene" uid="uid://c7ngwp4omugf7" path="res://prefabs/enemy_not_convertible.tscn" id="5_ybhun"]
 [ext_resource type="PackedScene" uid="uid://wrculvocurg4" path="res://prefabs/parallaxes/ocean_background.tscn" id="6_lx40h"]
 [ext_resource type="Script" uid="uid://bhexx6mj1xv3q" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="6_nm8e3"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="7_6vngw"]
@@ -43,20 +41,11 @@ script = ExtResource("7_6vngw")
 [node name="LevelScene" type="Node2D" unique_id=1591133082]
 
 [node name="Player" parent="." unique_id=1151301046 instance=ExtResource("1_w1q8k")]
-position = Vector2(54, 439)
+position = Vector2(54, 750)
 
 [node name="Path2D" type="Path2D" parent="." unique_id=940190472]
-position = Vector2(578, 149)
+position = Vector2(578, 564)
 curve = SubResource("Curve2D_bt7hj")
-
-[node name="EnemyConvertible" parent="." unique_id=1303128826 instance=ExtResource("4_06d1o")]
-position = Vector2(531, 307)
-
-[node name="EnemyConvertible2" parent="." unique_id=2104603231 instance=ExtResource("4_06d1o")]
-position = Vector2(754, 80)
-
-[node name="EnemyNotConvertible" parent="." unique_id=955768775 instance=ExtResource("5_ybhun")]
-position = Vector2(1001, 440)
 
 [node name="OceanBackground" parent="." unique_id=770127564 instance=ExtResource("6_lx40h")]
 
@@ -85,17 +74,16 @@ shape = SubResource("SegmentShape2D_5rubo")
 metadata/_edit_lock_ = true
 
 [node name="RightCollision" type="CollisionShape2D" parent="Walls" unique_id=1771949110]
-position = Vector2(2203, 3)
+position = Vector2(1158, 3)
 shape = SubResource("SegmentShape2D_nm8e3")
-metadata/_edit_lock_ = true
 
 [node name="MainCamera2D" type="Camera2D" parent="." unique_id=385616089]
 physics_interpolation_mode = 1
 top_level = true
-position = Vector2(576, 440)
+position = Vector2(55, 751)
 limit_left = 0
 limit_top = 0
-limit_right = 2200
+limit_right = 1157
 limit_bottom = 1507
 editor_draw_limits = true
 
@@ -106,7 +94,7 @@ script = ExtResource("5_5rubo")
 
 [node name="PhantomCamera2D" type="Node2D" parent="." unique_id=1324510204 node_paths=PackedStringArray("follow_target")]
 top_level = true
-position = Vector2(55, 440)
+position = Vector2(55, 751)
 script = ExtResource("6_nm8e3")
 follow_mode = 2
 follow_target = NodePath("../Player")
@@ -116,6 +104,6 @@ lookahead = true
 draw_limits = true
 limit_left = 0
 limit_top = 0
-limit_right = 2200
+limit_right = 1157
 limit_bottom = 1507
 metadata/_custom_type_script = "uid://bhexx6mj1xv3q"

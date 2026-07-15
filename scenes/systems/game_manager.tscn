@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bggs5ce83onbw"]
+
+[ext_resource type="Script" uid="uid://14vf540qfce3" path="res://scenes/systems/game_manager.gd" id="1_sry45"]
+[ext_resource type="PackedScene" uid="uid://dv5uj6xtxc22f" path="res://prefabs/enemy_convertible.tscn" id="2_wx060"]
+[ext_resource type="PackedScene" uid="uid://c7ngwp4omugf7" path="res://prefabs/enemy_not_convertible.tscn" id="3_qwvo8"]
+
+[sub_resource type="Animation" id="Animation_sry45"]
+resource_name = "level_1_timeline"
+length = 30.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.1666667, 10.333333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [ExtResource("2_wx060"), 3, 0.4],
+"method": &"spawn_enemies_from_spawnpoints"
+}, {
+"args": [],
+"method": &"spawn_enemy_randomly"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_rcobk"]
+resource_name = "level_2_timeline"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rcobk"]
+_data = {
+&"level_1_timeline": SubResource("Animation_sry45"),
+&"level_2_timeline": SubResource("Animation_rcobk")
+}
+
+[node name="GameManager" type="Node" unique_id=961162597 node_paths=PackedStringArray("spawn_points")]
+script = ExtResource("1_sry45")
+enemy_scenes = Array[PackedScene]([ExtResource("2_wx060"), ExtResource("3_qwvo8")])
+spawn_points = [NodePath("SpawnPoints/Marker2D"), NodePath("SpawnPoints/Marker2D2"), NodePath("SpawnPoints/Marker2D3"), NodePath("SpawnPoints/Marker2D4"), NodePath("SpawnPoints/Marker2D5")]
+off_screen_margin = 100.0
+
+[node name="GameTimeline" type="AnimationPlayer" parent="." unique_id=1327758685]
+libraries/ = SubResource("AnimationLibrary_rcobk")
+autoplay = &"level_1_timeline"
+
+[node name="SpawnPoints" type="Node" parent="." unique_id=1444597717]
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPoints" unique_id=1678449487]
+position = Vector2(1543, 484)
+gizmo_extents = 20.0
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPoints" unique_id=996988796]
+position = Vector2(1543, 594)
+gizmo_extents = 20.0
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPoints" unique_id=600711670]
+position = Vector2(1543, 687)
+gizmo_extents = 20.0
+
+[node name="Marker2D4" type="Marker2D" parent="SpawnPoints" unique_id=2144497560]
+position = Vector2(1543, 803)
+gizmo_extents = 20.0
+
+[node name="Marker2D5" type="Marker2D" parent="SpawnPoints" unique_id=1370900033]
+position = Vector2(1543, 908)
+gizmo_extents = 20.0

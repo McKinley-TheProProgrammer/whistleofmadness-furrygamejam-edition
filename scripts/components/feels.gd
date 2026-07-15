@@ -15,7 +15,7 @@ func damage_taken():
 	set_blink_intensity(0.8)
 	
 	var tilt_tween = get_tree().create_tween()
-	tilt_tween.tween_property(get_parent(), "rotation", 25, .15)
+	tilt_tween.tween_property(get_parent(), "rotation", 5, .15)
 	tilt_tween.chain().tween_property(get_parent(),"rotation", 0, .1)
 	
 	await get_tree().create_timer(0.5).timeout

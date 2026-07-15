@@ -48,7 +48,7 @@ func _on_damage_taken(amount: int, hpAfter: int) -> void:
 
 
 func _on_health_dead() -> void:
-	var dead_tween = create_tween()
+	var dead_tween = get_tree().create_tween()
 	dead_tween.tween_property(self,"global_position",Vector2.DOWN * 100,3).as_relative().set_ease(Tween.EASE_OUT)
 	dead_tween.tween_property(self,"global_position", Vector2.RIGHT, .1).set_trans(Tween.TRANS_SINE)
 	await dead_tween.finished

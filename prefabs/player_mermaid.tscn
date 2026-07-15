@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://ek7da52xc3j2" path="res://scripts/player.gd" id="1_ns00x"]
 [ext_resource type="PackedScene" uid="uid://di8p1r1hujcuv" path="res://prefabs/bullet/bullet_sonar_wave.tscn" id="2_vtw5p"]
 [ext_resource type="Script" uid="uid://dncrpx1r7156g" path="res://scripts/strategies/shotting/standard_shooting_strategy.gd" id="3_kqwd6"]
+[ext_resource type="Shader" uid="uid://cwuydvfjtcveb" path="res://shaders/blink_and_saturate.gdshader" id="4_a4x0o"]
 [ext_resource type="AnimationLibrary" uid="uid://dicrbq1oy27r2" path="res://animations/player_animation_library.tres" id="5_kqwd6"]
 [ext_resource type="PackedScene" uid="uid://bskpvvtkc5xb8" path="res://prefabs/components/health.tscn" id="6_tovvf"]
 
@@ -12,6 +13,13 @@ script = ExtResource("3_kqwd6")
 bullet_prefab = ExtResource("2_vtw5p")
 fire_rate = 1.5
 metadata/_custom_type_script = "uid://dncrpx1r7156g"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kei40"]
+shader = ExtResource("4_a4x0o")
+shader_parameter/blink_color = Color(1, 0, 0, 1)
+shader_parameter/saturation_amount = 2.0
+shader_parameter/blink_max_intensity = 0.0
+shader_parameter/blink_frequency = 5.0
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_kds5g"]
 frame_0/texture = ExtResource("1_6ejqr")
@@ -83,10 +91,12 @@ collision_mask = 12
 motion_mode = 1
 script = ExtResource("1_ns00x")
 health = NodePath("Health")
+move_speed = 400.0
 turret_holder = NodePath("TurretHolder")
 firing_strategy = SubResource("Resource_06d1o")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=528081915]
+material = SubResource("ShaderMaterial_kei40")
 scale = Vector2(0.1, 0.1)
 texture = SubResource("AnimatedTexture_kds5g")
 flip_h = true
